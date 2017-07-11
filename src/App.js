@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
-import './App.css';
-import EmailBody from './EmailBody';
+import EmailBody from './components/EmailBody';
 import HeaderEditor from './blocks/Header/Header.editor';
 import BannerImageEditor from './blocks/BannerImage/BannerImage.editor';
 import ContentBlockEditor from './blocks/ContentBlock/ContentBlock.editor';
+
+// greg: importing CSS and WebPack knows to bundle everything in the production version
+import './App.css';
 
 class App extends Component {
 
@@ -14,8 +15,6 @@ class App extends Component {
 			addedHandlers: {},
 			addedBlocks: {}
 		};
-
-		window.jason = this.state;
 	}
 
 	handleChanged = (id, component) => {
@@ -29,6 +28,8 @@ class App extends Component {
 	};
 
 	handleAddHandler = (id, handler) => {
+
+		// greg: Object.assign is the same as _.extend
 		let handlers = Object.assign({}, this.state.addedHandlers, {
 			[id]: handler
 		});
@@ -38,6 +39,12 @@ class App extends Component {
 		});
 	};
 
+	/**
+	 * Accepts the editor for a component, and returns a new function which will be the click handler for the list item
+	 *
+	 * @param Editor
+	 * @returns {function()}
+	 */
 	addHandlerGenerator(Editor) {
 
 		return () => {
@@ -53,23 +60,23 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<div className="App-header">
-
-				</div>
+				<h1 className="App-header">
+					Email Template Builder
+				</h1>
 
 				<ul>
 					<li onClick={this.addHandlerGenerator(HeaderEditor)}>Header Block</li>
 					<li onClick={this.addHandlerGenerator(BannerImageEditor)}>Banner Image</li>
 					<li onClick={this.addHandlerGenerator(ContentBlockEditor)}>ContentBlock</li>
 				</ul>
-				<EmailBody>
-				{Object.keys(this.state.addedHandlers).map((handlerKey) => {
-					return <div className="block">
-						{this.state.addedBlocks[handlerKey]}
-						{this.state.addedHandlers[handlerKey]}
-					</div>
 
-				})}
+				<EmailBody>
+					{Object.keys(this.state.addedHandlers).map((handlerKey) => {
+						return <div className="block">
+							{this.state.addedBlocks[handlerKey]}
+							{this.state.addedHandlers[handlerKey]}
+						</div>
+					})}
 				</EmailBody>
 			</div>
 		);

@@ -1,8 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-export default class BannerImage extends Component {
-
-	render() {
-		return <img src={this.props.src} />
-	}
+export default ({src}) => {
+	return <img src={src} />
 }
