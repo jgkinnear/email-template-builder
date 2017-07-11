@@ -10,7 +10,7 @@ export default class ContentBlockEditor extends Component {
 			id: this.props.id,
 			heading: '',
 			paragraph: '',
-			type: null,
+			type: '',
 		};
 	}
 

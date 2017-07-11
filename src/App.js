@@ -71,8 +71,8 @@ class App extends Component {
 				</ul>
 
 				<EmailBody>
-					{Object.keys(this.state.addedHandlers).map((handlerKey) => {
-						return <div className="block">
+					{Object.keys(this.state.addedHandlers).map((handlerKey, index) => {
+						return <div key={index} className="block">
 							{this.state.addedBlocks[handlerKey]}
 							{this.state.addedHandlers[handlerKey]}
 						</div>
