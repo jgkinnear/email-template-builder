@@ -31,7 +31,13 @@ export default class BannerImageEditor extends Component {
 
 	render() {
 		return <div>
-			IMG Url({this.state.id})<input type="text" value={this.state.src} onChange={this.handleSrcChange} />
+			IMG Url({this.state.id})
+			<input
+				type="text"
+				value={this.state.src}
+				placeholder="Image URL"
+				onChange={this.handleSrcChange}
+			/>
 		</div>
 	}
 }
