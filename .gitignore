@@ -1,5 +1,10 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
+# Ignore all CSS files inside of the source directory. These will be generated with SASS
+# NOTE: it is discourages to share styles between components according to the FB docs. My intention is still to follow this rule, but be able to use things such as nesting
+# ~ Generally, we recommend that you don’t reuse the same CSS classes across different components. For example, instead of using a .Button CSS class in <AcceptButton> and <RejectButton> components, we recommend creating a <Button> component with its own .Button styles, that both <AcceptButton> and <RejectButton> can render (but not inherit).
+src/**/*.css
+
 # dependencies
 /node_modules
 
